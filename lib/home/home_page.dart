@@ -1,8 +1,10 @@
+import 'package:DevQuiz/challenge/challenge_page.dart';
 import 'package:DevQuiz/home/home_controller.dart';
 import 'package:DevQuiz/home/home_state.dart';
 import 'package:DevQuiz/home/widgets/level_button_widget.dart';
 import 'package:DevQuiz/utils/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../core/app_colors.dart';
 import 'widgets/app_widget.dart';
@@ -37,17 +39,36 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LevelButtonWidget(label: NiveisDificuldade.facil),
-                  LevelButtonWidget(label: NiveisDificuldade.medio),
-                  LevelButtonWidget(label: NiveisDificuldade.dificil),
-                  LevelButtonWidget(label: NiveisDificuldade.perito)
-                ],
-              ),
-            ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Container(
+                  height: 50,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            LevelButtonWidget(label: NiveisDificuldade.facil),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            LevelButtonWidget(label: NiveisDificuldade.medio),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            LevelButtonWidget(label: NiveisDificuldade.dificil),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            LevelButtonWidget(label: NiveisDificuldade.perito),
+                      )
+                    ],
+                  ),
+                )),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -57,6 +78,13 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   children: controller.quizzes!
                       .map((e) => QuizCardWidget(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ChallengePage(
+                                          questions: e.questions)));
+                            },
                             title: e.title,
                             completed:
                                 "${e.questionAnswered}/${e.questions.length}",
