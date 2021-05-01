@@ -1,6 +1,6 @@
-import 'package:DevQuiz/core/app_text_styles.dart';
-import 'package:DevQuiz/widgets/progress_indicator_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:nlw_05/core/core.dart';
+import 'package:nlw_05/widgets/progress_indicator_widget.dart';
 
 class QuestionIndicatorWidget extends StatelessWidget {
   final int currentPage;

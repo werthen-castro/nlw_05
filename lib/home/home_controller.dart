@@ -1,7 +1,7 @@
-import 'package:DevQuiz/home/home_repository.dart';
-import 'package:DevQuiz/models/quiz_model.dart';
-import 'package:DevQuiz/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:nlw_05/home/home_repository.dart';
+import 'package:nlw_05/models/quiz_model.dart';
+import 'package:nlw_05/models/user_model.dart';
 
 import 'home_state.dart';
 

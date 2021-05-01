@@ -1,13 +1,13 @@
-import 'package:DevQuiz/challenge/challenge_page.dart';
-import 'package:DevQuiz/home/home_controller.dart';
-import 'package:DevQuiz/home/home_state.dart';
-import 'package:DevQuiz/home/widgets/level_button_widget.dart';
-import 'package:DevQuiz/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:nlw_05/challenge/challenge_page.dart';
+import 'package:nlw_05/utils/utils.dart';
 
 import '../core/app_colors.dart';
-import 'widgets/app_widget.dart';
+import 'home_controller.dart';
+import 'home_state.dart';
+import 'widgets/app_bar_widget.dart';
+import 'widgets/level_button_widget.dart';
 import 'widgets/quiz_card_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -83,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ChallengePage(
+                                          title: e.title,
                                           questions: e.questions)));
                             },
                             title: e.title,

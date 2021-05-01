@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../utils/enums.dart';
+import '../utils/utils.dart';
 import 'question_model.dart';
 
 class QuizModel {

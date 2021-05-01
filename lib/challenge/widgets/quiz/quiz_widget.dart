@@ -1,15 +1,15 @@
-import 'package:DevQuiz/core/app_text_styles.dart';
-import 'package:DevQuiz/models/awnser_mode.dart';
-import 'package:DevQuiz/models/question_model.dart';
 import 'package:flutter/material.dart';
+import 'package:nlw_05/core/app_text_styles.dart';
+import 'package:nlw_05/models/awnser_mode.dart';
+import 'package:nlw_05/models/question_model.dart';
 
 import '../awnser_widget.dart';
 
 class QuizWidget extends StatefulWidget {
   final QuestionModel question;
-  final VoidCallback onChange;
+  final ValueChanged<bool> onSelected;
 
-  QuizWidget({required this.question, required this.onChange});
+  QuizWidget({required this.question, required this.onSelected});
 
   @override
   _QuizWidgetState createState() => _QuizWidgetState();
@@ -37,11 +37,11 @@ class _QuizWidgetState extends State<QuizWidget> {
               awnser: awnsers(i),
               disabled: indexSelelected != -1,
               isSelected: indexSelelected == i,
-              onTap: () {
+              onTap: (value) {
                 indexSelelected = i;
 
                 Future.delayed(Duration(seconds: 1))
-                    .then((value) => widget.onChange());
+                    .then((_) => widget.onSelected(value));
 
                 setState(() {});
               },

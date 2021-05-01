@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:DevQuiz/models/quiz_model.dart';
-import 'package:DevQuiz/models/user_model.dart';
 import 'package:flutter/services.dart';
+import 'package:nlw_05/models/quiz_model.dart';
+import 'package:nlw_05/models/user_model.dart';
 
 class HomeRepository {
   Future<UserModel> getUser() async {

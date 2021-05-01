@@ -1,7 +1,8 @@
-import 'package:DevQuiz/home/widgets/score_card_widget.dart';
-import 'package:DevQuiz/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:DevQuiz/core/core.dart';
+import 'package:nlw_05/core/core.dart';
+import 'package:nlw_05/models/user_model.dart';
+
+import 'score_card_widget.dart';
 
 class AppBarWidget extends PreferredSize {
   final UserModel user;
@@ -40,7 +41,11 @@ class AppBarWidget extends PreferredSize {
                       ],
                     ),
                   ),
-                  Align(alignment: Alignment(0, 1.0), child: ScoreCardWidget())
+                  Align(
+                      alignment: Alignment(0, 1.0),
+                      child: ScoreCardWidget(
+                        percent: user.score / 100,
+                      ))
                 ],
               ),
             ));

@@ -1,6 +1,7 @@
-import 'package:DevQuiz/challenge/widgets/question_indicator_widget.dart';
-import 'package:DevQuiz/models/question_model.dart';
 import 'package:flutter/material.dart';
+import 'package:nlw_05/challenge/widgets/question_indicator_widget.dart';
+import 'package:nlw_05/models/question_model.dart';
+import 'package:nlw_05/result/result_page.dart';
 
 import 'challenge_controller.dart';
 import 'widgets/next_button_widget.dart';
@@ -8,8 +9,9 @@ import 'widgets/quiz/quiz_widget.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
+  final String title;
 
-  ChallengePage({required this.questions});
+  ChallengePage({required this.questions, required this.title});
 
   @override
   _ChallengePageState createState() => _ChallengePageState();
@@ -31,6 +33,13 @@ class _ChallengePageState extends State<ChallengePage> {
   nextPage() {
     pageController.nextPage(
         duration: Duration(microseconds: 100), curve: Curves.linear);
+  }
+
+  void onSelected(bool value) {
+    if (value) {
+      controller.qtsAnwserRight++;
+    }
+    nextPage();
   }
 
   @override
@@ -68,7 +77,7 @@ class _ChallengePageState extends State<ChallengePage> {
             children: widget.questions
                 .map((e) => QuizWidget(
                       question: e,
-                      onChange: nextPage,
+                      onSelected: onSelected,
                     ))
                 .toList(),
           ),
@@ -97,7 +106,14 @@ class _ChallengePageState extends State<ChallengePage> {
                             child: NextButtonWidget.green(
                           label: 'Confirmar',
                           onTap: () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultPage(
+                                          lenght: widget.questions.length,
+                                          title: widget.title,
+                                          result: controller.qtsAnwserRight,
+                                        )));
                           },
                         )),
                     ],
